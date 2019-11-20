@@ -1,14 +1,46 @@
 import { Injectable } from '@angular/core';
-import { Word } from './data/word';
+import { Game } from './data/game'
+import { Player } from './data/player'
 
 @Injectable({
   providedIn: 'root'
 })
 export class HangmanService {
 
-  constructor() { }
+  words: string[] = [
+    'marvin',
+    'testi',
+    'flagada'
+  ]
 
-  getWord(): Word {
-    return {  text: "Marvin" };
+  currentGame: Game = {
+    word: null,
+    hiddenWord: null,
+    player: null,
+    letters: []
   }
+
+  constructor() { 
+    this.currentGame.player = { score: 0, health: 5 };
+    this.currentGame.word = this.words[0]
+  }
+
+  getHiddenWord(): string {
+    return this.currentGame.hiddenWord;
+  }
+
+  getCurrentPlayer(): Player {
+    return this.currentGame.player;
+  }
+
+  testLetter(letter: string): boolean {
+    var word = "Marvin";
+    if (word.includes(letter)) {
+      this.currentGame.player.score += 10
+      return true
+    }
+    this.currentGame.player.health -= 1
+    return false
+  }
+
 }

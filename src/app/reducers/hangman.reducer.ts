@@ -1,6 +1,8 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import {
-  tryLetter
+  tryLetter,
+  loseHealth,
+  addLetterToTriedList
 } from '../actions/hangman.actions';
 
 export const hangmanFeatureKey = 'hangman';
@@ -30,12 +32,24 @@ const _reducer = createReducer(
   initialState,
   on(tryLetter, 
     (state, { letter }) => (
-      
       { word: state.word + letter, 
         foundLetters: state.foundLetters,
-        health: state.health -1
+        health: state.health
       })
-    )
+    ),
+  on(loseHealth,
+    (state) => ({
+      ...state,
+        health: state.health - 1
+      })
+  ),
+  on(addLetterToTriedList,
+    (state, { letter }) => (
+      {
+      ...state,
+      foundLetters: state.foundLetters
+    })
+  )
 );
 
 export function reducer(state: State, action: Action) {

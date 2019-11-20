@@ -3,6 +3,21 @@
 
 <div> {{ health | async }} </div>
 
+<div> {{ test }}  </div>
+<div>{{ result }} </div>
+
+-------------------------------------
+ 
+<div> {{ word }} </div>
+<div> {{ player.health }} </div>
+<div> {{ player.score }} </div>
+
+------------------------------------- <br>
+
 <button id="increment" (click)="tryLetter('a')">TRY A</button>
+<button id="increment" (click)="tryLetter('b')">TRY B</button>
+<button id="increment" (click)="tryLetter('c')">TRY C</button>
+<button id="increment" (click)="tryLetter('d')">TRY D</button>
+<button id="increment" (click)="tryLetter('e')">TRY E</button>
 
 <router-outlet></router-outlet>
