@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "assignment-app"
+    }
+  },
+  "defaultProject": "assignment-app",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
