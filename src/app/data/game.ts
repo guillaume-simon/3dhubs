@@ -5,5 +5,6 @@ export class Game {
     word: string;
     hiddenWord: string[];
     player: Player;
-    letters: string[]
+    letters: string[];
+    multiplier: number;
 }

@@ -9,15 +9,18 @@ export class HangmanService {
 
   words: string[] = [
     'marvin',
-    'testi',
-    'flagada'
+    'print',
+    'filament',
+    'order',
+    'layer'
   ]
 
   currentGame: Game = {
     word: null,
     hiddenWord: null,
     player: null,
-    letters: []
+    letters: [],
+    multiplier: 1
   }
 
   constructor() { 
@@ -43,12 +46,14 @@ export class HangmanService {
   }
 
   testLetter(letter: string): boolean {
+    this.currentGame.letters.push(letter)
     if (this.currentGame.word.includes(letter)) {
-      this.currentGame.player.score += 10
-      this.currentGame.letters.push(letter)
+      this.currentGame.player.score += 100 * this.currentGame.multiplier
+      this.currentGame.multiplier += 1
       this.updateHiddenWord()
       return true
     }
+    this.currentGame.multiplier = 1
     this.currentGame.player.health -= 1
     return false
   }
@@ -62,6 +67,14 @@ export class HangmanService {
         this.currentGame.hiddenWord.push("_")
       }
     }
+  }
+
+  newGame() {
+    this.currentGame.word = this.words[Math.floor(Math.random() * Math.floor(this.words.length))];
+    this.currentGame.player.health = 5
+    this.currentGame.player.score = 0
+    this.currentGame.letters = []
+    this.updateHiddenWord();
   }
 
 }

@@ -13,7 +13,6 @@ import { Game } from './data/game';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit  {
-  title = 'Hangman Assignment';
   result: string = 'false';
   game: Game;
   player: Player;
@@ -46,6 +45,7 @@ export class AppComponent implements OnInit  {
 
   ngOnInit() {
     this.store.dispatch({ type: 'test' });
+    this.hangmanService.newGame()
     this.getGame();
     this.getPlayer();
     this.getWord();
@@ -75,5 +75,12 @@ export class AppComponent implements OnInit  {
   submitLetter(): void {
     console.log('submitLetter')
     this.tryLetter(this.letter);
+  }
+
+  newGame(): void {
+    this.hangmanService.newGame()
+    this.getHiddenWord()
+    this.getPlayer()
+    this.healthCounter = Array(this.player.health).fill(true);
   }
 }
