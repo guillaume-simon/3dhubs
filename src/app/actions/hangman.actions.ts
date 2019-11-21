@@ -8,8 +8,3 @@ export const tryLetter = createAction(
 export const loseHealth = createAction(
   '[Hangman] Lose Health'
 )
-
-export const addLetterToTriedList = createAction(
-  '[Hangman] Add Letter To Tried List',
-  props<{ letter: string }>()
-)

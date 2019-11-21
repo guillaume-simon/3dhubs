@@ -1,23 +1,27 @@
 <h1>{{title}}</h1>
-<div>Current Count: {{ word | async }}</div>
 
-<div> {{ health | async }} </div>
 
-<div> {{ test }}  </div>
-<div>{{ result }} </div>
+<div fxLayout="row" fxLayoutAlign="center">
+ <div class='word'>
+     <div *ngFor="let letter of hiddenWord" class="letter" [class.found]="letter!='_'" >
+        {{ letter }}
+    </div>
+</div>
+</div>
 
--------------------------------------
- 
-<div> {{ word }} </div>
-<div> {{ player.health }} </div>
-<div> {{ player.score }} </div>
+<div fxLayout="row" fxLayoutAlign="center">
+        <div class='score'> {{ player.score }} </div>
+</div>
 
-------------------------------------- <br>
+<div fxLayout="row" fxLayoutAlign="center">
+        <div *ngFor="let healthPoint of healthCounter" class='health' [class.full]="healthPoint" [class.empty]="!healthPoint"></div>
+</div>
 
-<button id="increment" (click)="tryLetter('a')">TRY A</button>
-<button id="increment" (click)="tryLetter('b')">TRY B</button>
-<button id="increment" (click)="tryLetter('c')">TRY C</button>
-<button id="increment" (click)="tryLetter('d')">TRY D</button>
-<button id="increment" (click)="tryLetter('e')">TRY E</button>
+
+
+<div fxLayout="row" fxLayoutAlign="center">
+    <button class="letter" [disabled]="game.letters.includes(letter)" *ngFor="let letter of availableLetters" (click)="tryLetter(letter)">{{ letter }}</button>
+</div>
+
 
 <router-outlet></router-outlet>

@@ -1,1 +1,53 @@
+@import '../assets/colors.scss';
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
 
+.letter {
+    color: black;
+    background-color: $letter-hidden-color;
+    border: none;
+    border-radius: 7.5px;
+    font-size: 30pt;
+    text-align: center;
+    font-family: 'Roboto Mono';
+    padding: 10px;
+    display: inline-block;
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+    outline: none;
+    transition: background-color 0.2s;
+    &.found {
+        background-color: $letter-found-color;
+    }
+    &:enabled {
+        cursor: pointer;
+        &:hover {
+            background-color: $letter-found-color;
+        }
+        &:active {
+            background-color: white;
+        }
+    }
+    &:disabled {
+        background-color: $letter-disabled-color;
+    }
+}
+
+.health {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+    &.full {
+        background-color: $health-full-color;
+    }
+    &.empty {
+        background-color: $health-empty-color;
+    }
+}
+
+.score {
+    font-size: 15pt;
+    font-family: 'Roboto Mono';
+}

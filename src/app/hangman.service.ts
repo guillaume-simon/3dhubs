@@ -23,9 +23,18 @@ export class HangmanService {
   constructor() { 
     this.currentGame.player = { score: 0, health: 5 };
     this.currentGame.word = this.words[0]
+    this.updateHiddenWord()
   }
 
-  getHiddenWord(): string {
+  getGame(): Game {
+    return this.currentGame;
+  }
+
+  getWord(): string {
+    return this.currentGame.word;
+  }
+
+  getHiddenWord(): string[] {
     return this.currentGame.hiddenWord;
   }
 
@@ -34,13 +43,25 @@ export class HangmanService {
   }
 
   testLetter(letter: string): boolean {
-    var word = "Marvin";
-    if (word.includes(letter)) {
+    if (this.currentGame.word.includes(letter)) {
       this.currentGame.player.score += 10
+      this.currentGame.letters.push(letter)
+      this.updateHiddenWord()
       return true
     }
     this.currentGame.player.health -= 1
     return false
+  }
+
+  updateHiddenWord() {
+    this.currentGame.hiddenWord = []
+    for (var i = 0; i < this.currentGame.word.length; i++) {
+      if (this.currentGame.letters.includes(this.currentGame.word[i])) {
+        this.currentGame.hiddenWord.push(this.currentGame.word[i])
+      } else {
+        this.currentGame.hiddenWord.push("_")
+      }
+    }
   }
 
 }
