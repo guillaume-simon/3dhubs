@@ -1,8 +1,8 @@
-<div fxLayout="column" fxLayoutAlign="center">
+<div fxLayout="col" fxLayoutAlign="center center">
         <div class='score'>
             {{ score | async }}
-        </div>
-        <div class='multiplier'>
+        </div><br>
+        <div class='multiplier' *ngIf="(multiplier | async) > 1">
            (COMBO x {{ multiplier | async }})
         </div>
 

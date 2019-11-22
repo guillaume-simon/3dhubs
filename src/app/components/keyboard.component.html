@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="center">
+<div fxLayout="fxLayoutGap" fxLayoutAlign="center">
     <div *ngIf=" (health | async) > 0; else lostBlock ">
         <button class="letter"
             *ngFor="let letter of availableLetters" 

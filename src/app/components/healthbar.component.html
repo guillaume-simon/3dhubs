@@ -1,3 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="center">
-    HEALTH : {{ health | async }}
+<div style="margin-top: 20px; margin-bottom: 20px;" fxLayout="row" fxLayoutAlign="center">
+    <div class='health full' *ngFor="let healthPoint of (health | async | numberToBoolArray)">
+    </div>
 </div>

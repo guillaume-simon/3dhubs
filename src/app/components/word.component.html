@@ -1,5 +1,5 @@
-<div fxLayout="row" fxLayoutAlign="center">
-    {{ word | async }}
+{{ word | async }}
+<div style="margin-top: 20px; margin-bottom: 20px;" fxLayout="row" fxLayoutAlign="center">
     <div class='word'>
         <button *ngFor="let letter of (word | async | stringToLetter )" 
             class="letter" 

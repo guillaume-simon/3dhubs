@@ -15,6 +15,7 @@ import { KeyboardComponent } from './components/keyboard.component'
 import { ScorebarComponent } from './components/scorebar.component'
 import { WordComponent } from './components/word.component'
 import { StringToLetterPipe } from './string-to-letter.pipe'
+import { NumberToBoolArrayPipe } from './number-to-bool-array.pipe'
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { StringToLetterPipe } from './string-to-letter.pipe'
     KeyboardComponent,
     ScorebarComponent,
     WordComponent,
-    StringToLetterPipe
+    StringToLetterPipe,
+    NumberToBoolArrayPipe
   ],
   imports: [
     BrowserModule,
