@@ -1,45 +1,81 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import {
+  resetGame,
   tryLetter,
-  loseHealth
+  submitBadLetter,
+  submitGoodLetter
 } from '../actions/hangman.actions';
+
+import { Player } from '../models/player.model';
 
 export const hangmanFeatureKey = 'hangman';
 
 export interface State {
   word: string;
-  foundLetters: string[];
-  health: number;
+  submittedLetters: string[];
+  player: Player;
+  score: number;
+  multiplier: number;
 }
 
+export const words: string[] = [
+  'marvin',
+  'print',
+  'filament',
+  'order',
+  'layer'
+]
+
 export const initialState: State = {
-  word: 'marvin',
-  foundLetters: ['a'],
-  health: 5
+  word: words[Math.floor(Math.random() * Math.floor(words.length))],
+  submittedLetters: [],
+  player: { health: 5, score: 0 },
+  score: 0,
+  multiplier: 1
 };
+
+
 
 const hangmanReducer = createReducer(
   initialState,
 );
 
 export const getWord = (state: State) => state.word;
-export const getFoundLetters = (state: State) => state.foundLetters;
-export const getHealth = (state: State) => state.health;
+export const getFoundLetters = (state: State) => state.submittedLetters;
 
 
 const _reducer = createReducer(
   initialState,
+  on(resetGame, 
+    (state) => ({  
+      word: words[Math.floor(Math.random() * Math.floor(words.length))],
+      submittedLetters: [],
+      player: { health: 5, score: 0 },
+      score: 0,
+      multiplier: 1})
+    ),
   on(tryLetter, 
     (state, { letter }) => (
-      { word: state.word + letter, 
-        foundLetters: state.foundLetters,
-        health: state.health
+      { ...state,
+        submittedLetters: state.submittedLetters
       })
     ),
-  on(loseHealth,
-    (state) => ({
+  on(submitBadLetter,
+    (state, { letter }) => (
+      {
       ...state,
-        health: state.health - 1
+        multiplier: 1,
+        submittedLetters: state.submittedLetters.concat(letter),
+        player: { ...state.player, health: state.player.health - 1, }
+      })
+  ),
+  on(submitGoodLetter,
+    (state, { letter }) => (
+      {
+      ...state,
+        score: state.score + (state.multiplier * 100),
+        multiplier: state.multiplier + 1,
+        submittedLetters: state.submittedLetters.concat(letter)
       })
   )
 );
@@ -47,18 +83,3 @@ const _reducer = createReducer(
 export function reducer(state: State, action: Action) {
   return _reducer(state, action);
 }
-
-/*
-export function reducer(state = initialState, action: Action) {
-  switch (action.type) {
-    case HangmanActions.tryLetter.type:
-      return {
-        word: 'yayaya' + 'a',
-        foundLetters: ['b']
-      };
-    default:
-      return hangmanReducer(state, action);
-  }
-
-}
-*/

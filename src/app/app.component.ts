@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { State } from './reducers';
-import { tryLetter, loseHealth } from './actions/hangman.actions';
+import { tryLetter, submitBadLetter } from './actions/hangman.actions';
 import { HangmanService } from './hangman.service';
-import { Player } from './data/player';
-import { Game } from './data/game';
+import { Player } from './models/player.model';
+import { Game } from './models/game.model';
 
 @Component({
   selector: 'app-root',
@@ -13,74 +13,23 @@ import { Game } from './data/game';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit  {
-  result: string = 'false';
-  game: Game;
-  player: Player;
-  word: string = '';
   hiddenWord: string[] = [];
   health: Observable<number> = this.store.pipe(
-    select(state => state.hangman.health),
+    select(state => state.hangman.player.health),
   );
   healthCounter: boolean[] = [];
   letter: string = '';
-  availableLetters: string[] = [];
+  
+  hhealth: Observable<number> = this.store.pipe(
+    select(state => state.hangman.player.health),
+  );
 
   constructor(private store: Store<State>, private hangmanService: HangmanService) {}
 
-  getGame(): void {
-    this.game = this.hangmanService.getGame();
-  }
-
-  getPlayer(): void {
-    this.player = this.hangmanService.getCurrentPlayer();
-  }
-
-  getWord(): void {
-    this.word = this.hangmanService.getWord();
-  }
-
-  getHiddenWord(): void {
-    this.hiddenWord = this.hangmanService.getHiddenWord();
-  }
-
   ngOnInit() {
-    this.store.dispatch({ type: 'test' });
-    this.hangmanService.newGame()
-    this.getGame();
-    this.getPlayer();
-    this.getWord();
-    this.getHiddenWord();
-    this.healthCounter = Array(this.player.health).fill(true);
-    var i = 'a'.charCodeAt(0), j = 'z'.charCodeAt(0);
-    for (; i <= j; ++i) {
-      this.availableLetters.push(String.fromCharCode(i));
-    }
   }
 
-  tryLetter(letter: string) {
-    console.log('tryLetter')
-    if (this.hangmanService.testLetter(letter)) { 
-      this.result = "YES"
-      this.getHiddenWord()
-    } else {
-      this.store.dispatch(loseHealth());
-      this.getPlayer()
-      this.healthCounter.push(false);
-      this.healthCounter.shift();
-      this.result = "NO"
-    }
-      
-    //this.store.dispatch(tryLetter({ letter: 'a' }));
-  }
-  submitLetter(): void {
-    console.log('submitLetter')
-    this.tryLetter(this.letter);
-  }
-
-  newGame(): void {
-    this.hangmanService.newGame()
-    this.getHiddenWord()
-    this.getPlayer()
-    this.healthCounter = Array(this.player.health).fill(true);
+  test(letter: string) {
+    this.store.dispatch(tryLetter({ letter }));
   }
 }

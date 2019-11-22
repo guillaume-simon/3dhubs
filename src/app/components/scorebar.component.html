@@ -1,0 +1,10 @@
+<div fxLayout="column" fxLayoutAlign="center">
+        <div class='score'>
+            {{ score | async }}
+        </div>
+        <div class='multiplier'>
+           (COMBO x {{ multiplier | async }})
+        </div>
+
+    </div>
+    <button (click)="resetGame()">RESET</button>

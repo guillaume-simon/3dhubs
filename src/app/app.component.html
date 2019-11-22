@@ -1,33 +1,10 @@
 
+<scorebar></scorebar>
 
+    <word></word>
 
-    <div fxLayout="row" fxLayoutAlign="center">
-        <div class='score'> 
-            {{ player.score }}
-            <span class='multiplier' ng-if="game.multiplier != 1">
-                x {{ game.multiplier }}
-            </span>
-        </div>
-    </div>
+    <healthbar></healthbar>
 
-    <div fxLayout="row" fxLayoutAlign="center">
-        <div class='word'>
-            <div *ngFor="let letter of hiddenWord" class="letter" [class.found]="letter!='_'" >
-                {{ letter }}
-            </div>
-        </div>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="center">
-            <div *ngFor="let healthPoint of healthCounter" class='health' [class.full]="healthPoint" [class.empty]="!healthPoint"></div>
-    </div>
-
-    <div fxLayout="row" fxLayoutAlign="center">
-        <button class="letter" [disabled]="game.letters.includes(letter)" *ngFor="let letter of availableLetters" (click)="tryLetter(letter)">{{ letter }}</button>
-    </div>
-
-
-<button (click)="newGame()">Reset</button> 
-
+<keyboard></keyboard>
 
 <router-outlet></router-outlet>

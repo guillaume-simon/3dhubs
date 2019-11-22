@@ -32,8 +32,3 @@ export const getFoundLetters = createSelector(
   getHangmanState,
   fromHangman.getFoundLetters,
 );
-
-export const getHealth = createSelector(
-  getHangmanState,
-  fromHangman.getHealth,
-);

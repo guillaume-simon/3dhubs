@@ -1,0 +1,10 @@
+<div fxLayout="row" fxLayoutAlign="center">
+    {{ word | async }}
+    <div class='word'>
+        <button *ngFor="let letter of (word | async | stringToLetter )" 
+            class="letter" 
+            [class.found]="(submittedLetters | async).includes(letter)" >
+            {{ (submittedLetters | async).includes(letter) ? letter : '_'}}
+    </button>
+    </div>
+</div>
