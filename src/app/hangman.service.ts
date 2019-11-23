@@ -16,9 +16,6 @@ export class HangmanService {
     return false
   }
 
-  yaya(): string {
-    return 'yaya'
-  }
 
   performLogin() : string {
     //throw "Something went wrong";

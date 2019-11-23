@@ -32,3 +32,8 @@ export const getFoundLetters = createSelector(
   getHangmanState,
   fromHangman.getFoundLetters,
 );
+
+export const getNbFoundLetters = createSelector(
+  getHangmanState,
+  fromHangman.getNbFoundLetters,
+);

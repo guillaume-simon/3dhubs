@@ -1,10 +1,7 @@
-<div fxLayout="col" fxLayoutAlign="center center">
-        <div class='score'>
-            {{ score | async }}
-        </div><br>
-        <div class='multiplier' *ngIf="(multiplier | async) > 1">
-           (COMBO x {{ multiplier | async }})
-        </div>
-
+<div class='score' fxLayout="col" fxLayoutAlign="center center">
+    {{ score | async }}
+</div>
+    <div class='multiplier' fxLayout="col" fxLayoutAlign="center center">
+        (MULTIPLIER x {{ multiplier | async | floatToFixed }})
     </div>
-    <button (click)="resetGame()">RESET</button>
+    

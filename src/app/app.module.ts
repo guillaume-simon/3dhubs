@@ -16,6 +16,7 @@ import { ScorebarComponent } from './components/scorebar.component'
 import { WordComponent } from './components/word.component'
 import { StringToLetterPipe } from './string-to-letter.pipe'
 import { NumberToBoolArrayPipe } from './number-to-bool-array.pipe'
+import { FloatToFixedPipe } from './float-to-fixed.pipe'
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NumberToBoolArrayPipe } from './number-to-bool-array.pipe'
     ScorebarComponent,
     WordComponent,
     StringToLetterPipe,
-    NumberToBoolArrayPipe
+    NumberToBoolArrayPipe,
+    FloatToFixedPipe
   ],
   imports: [
     BrowserModule,

@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
-import { map, withLatestFrom } from 'rxjs/operators';
+import { map, withLatestFrom, filter } from 'rxjs/operators';
 import { HangmanService } from '../hangman.service';
 import { Store } from '@ngrx/store';
-import { State, getWord } from '../reducers';
+import { State, getWord, getNbFoundLetters } from '../reducers';
 
 @Injectable()
 export class HangmanEffects {
 
 
-  loadYaya$ = createEffect(() => this.actions$.pipe(
+  tryLetterEffect$ = createEffect(() => this.actions$.pipe(
     ofType('[Hangman] Try Letter'),
     withLatestFrom(this.store.select(getWord)),
-    map(([action, data])  => { 
-      console.log(action.letter);
-      if (data.includes(action.letter)) {
+    map(([action, word])  => { 
+      if (word.includes(action.letter)) {
         return ({ type: '[Hangman] Submit Good Letter', letter: action.letter }) 
       } else {
         return ({ type: '[Hangman] Submit Bad Letter', letter: action.letter }) 
@@ -23,7 +22,20 @@ export class HangmanEffects {
    } )
   ))
 
+  submitGoodLetterEffect$ = createEffect(() => this.actions$.pipe(
+    ofType('[Hangman] Submit Good Letter'),
+    withLatestFrom(this.store.select(getWord),
+      this.store.select(getNbFoundLetters)),
+    filter(([action, word, nbLetters]) => word.length == nbLetters ),
+    map(() => {
+      return ({ type: '[Hangman] Game Won' }) 
+   } )
+  ));
+
 /*
+), { dispatch: false });
+
+
   loadYaya$ = createEffect(() => this.actions$.pipe(
     ofType('[Hangman] Yaya'),
     map(action => { 

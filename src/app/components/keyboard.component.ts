@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import { State } from '../reducers';
-import { tryLetter } from '../actions/hangman.actions';
+import { tryLetter, resetGame } from '../actions/hangman.actions';
 
 @Component({
     selector: 'keyboard',
@@ -21,6 +21,15 @@ export class KeyboardComponent implements OnInit {
     health: Observable<number> = this.store.pipe(
         select(state => state.hangman.player.health),
     );
+    score: Observable<number> = this.store.pipe(
+        select(state => state.hangman.player.score),
+    );
+    highscore: Observable<number> = this.store.pipe(
+        select(state => state.hangman.highscore),
+    );
+    isGameOn: Observable<boolean> = this.store.pipe(
+        select(state => state.hangman.isGameOn),
+    );
 
     constructor(private store: Store<State>) {}
 
@@ -33,16 +42,10 @@ export class KeyboardComponent implements OnInit {
 
     submitLetter(letter: string): void {
         this.store.dispatch(tryLetter({ letter: letter }));
-/*
-        let state: State;
-        getWord;
+    }
 
-        if (this.hangmanService.testLetter(state.hangman.word, letter)) {
-            this.store.dispatch(submitGoodLetter({ letter: letter }));
-        } else {
-            this.store.dispatch(submitBadLetter({ letter: letter }));
-        }
-      */  
+    resetGame() {
+        this.store.dispatch(resetGame());
     }
     
 

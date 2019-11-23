@@ -1,10 +1,28 @@
+@import '../../assets/colors.scss';
 
 .message {
     border-radius: 10px;
-    background-color: #8eecff;
-    width: 50%;
+    background-color: $message-color;
+    min-width: 30%;
     height: 20vh;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
     vertical-align: center;
     text-align: center;
     font-family: 'Roboto Mono'
 }
+
+.button {
+    border-radius: 10px;
+    background-color: white;
+    outline: none;
+    border: none;
+    padding: 5px;
+    font-family: 'Roboto Mono';
+    cursor: pointer;
+    transition: background-color 0.2s;
+    &:hover {
+        background-color: $letter-found-color;
+    } 
+}
+
