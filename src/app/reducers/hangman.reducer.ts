@@ -3,7 +3,9 @@ import {
   resetGame,
   tryLetter,
   submitBadLetter,
-  submitGoodLetter
+  submitGoodLetter,
+  yayaAction,
+  yayaSuccessAction
 } from '../actions/hangman.actions';
 
 import { Player } from '../models/player.model';
@@ -34,15 +36,12 @@ export const initialState: State = {
   multiplier: 1
 };
 
-
-
 const hangmanReducer = createReducer(
   initialState,
 );
 
 export const getWord = (state: State) => state.word;
 export const getFoundLetters = (state: State) => state.submittedLetters;
-
 
 const _reducer = createReducer(
   initialState,
@@ -77,7 +76,14 @@ const _reducer = createReducer(
         multiplier: state.multiplier + 1,
         submittedLetters: state.submittedLetters.concat(letter)
       })
-  )
+  ),
+  on(yayaAction,
+    (state, { letter }) => (state)),
+  on(yayaSuccessAction,
+    (state, { text }) => (
+      {...state,
+      word: text
+    }))
 );
 
 export function reducer(state: State, action: Action) {

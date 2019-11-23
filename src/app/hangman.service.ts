@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,16 @@ export class HangmanService {
     }
     return false
   }
+
+  yaya(): string {
+    return 'yaya'
+  }
+
+  performLogin() : string {
+    //throw "Something went wrong";
+    //return of(true);
+    console.log('performLogin()')
+    return 'YAYAYA';
+}
 
 }
