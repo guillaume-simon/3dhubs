@@ -1,7 +1,27 @@
-<div class='score' fxLayout="col" fxLayoutAlign="center center">
-    {{ score | async }}
-</div>
-    <div class='multiplier' fxLayout="col" fxLayoutAlign="center center">
-        (MULTIPLIER x {{ multiplier | async | floatToFixed }})
+<div fxLayout="row" fxLayoutAlign="space-around center" >
+    <div>
+        <div class='score-labels'>
+            PLAYER
+        </div>
+        <div class='score'>
+            {{ score | async }}
+        </div>
     </div>
+
+    <div class='multiplier' [class.multiplier-bonus]="(multiplier | async) > 1" *ngIf="isGameOn | async">
+        (COMBO x {{ multiplier | async | floatToFixed }})
+    </div>
+
+    <div>
+        <div class='score-labels' style='text-align: right;'>
+            HIGHSCORE
+        </div>
+        <div class='score' style='text-align: right;'>
+            {{ highscore | async }}
+        </div>
+    </div>
+
+
+
+</div>
     

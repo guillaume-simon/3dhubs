@@ -1,4 +1,4 @@
-<div style='padding-left: 10vw; padding-right: 10vw' fxLayout="fxLayoutGap" fxLayoutAlign="center" *ngIf="(isGameOn | async ); else winBlock">
+<div fxLayout="fxLayoutGap" fxLayoutAlign="center" *ngIf="(isGameOn | async ); else winBlock">
     <div *ngIf=" (health | async) > 0; else looseBlock ">
         <button class="letter"
             *ngFor="let letter of availableLetters" 
@@ -8,19 +8,9 @@
         </button>
     </div>
     <ng-template #looseBlock>
-        <div class='message lost'>
-            You lost.<br><br>
-            <button class='button' (click)="resetGame()">Try Again ?</button>
-        </div>
-    </ng-template>
+        <lose-message></lose-message>
+    </ng-template>    
 </div>
 <ng-template #winBlock>
-    <div class='message lost'>
-        You won !<br><br>
-        Bonus points : <br>
-        Health: + {{ health | async }} x 1000<br>
-        Final score: {{ score | async }}<br>
-        <div *ngIf="(score | async ) == (highscore | async )"> NEW HIGHSCORE !</div><br>
-        <button class='button' (click)="resetGame()">Replay ?</button>
-    </div>
+    <win-message></win-message>
 </ng-template>

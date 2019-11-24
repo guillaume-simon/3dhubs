@@ -1,4 +1,3 @@
-{{ word | async }}
 <div fxLayout="row" fxLayoutAlign="center">
     <div class='word'>
         <div *ngFor="let letter of (word | async | stringToLetter )" 

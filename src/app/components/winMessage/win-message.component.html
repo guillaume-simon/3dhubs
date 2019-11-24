@@ -1,0 +1,12 @@
+<div class='message'>
+    <div class='victory-text'>
+        YOU WIN !
+    </div>
+    <br>
+    HEALTH BONUS: {{ health | async }} x 1000<br>
+    PLAYER SCORE: {{ score | async }}<br>
+    <div class='victory-text' *ngIf="(score | async ) == (highscore | async )">
+        NEW HIGHSCORE !
+    </div><br>
+    <button class='button' (click)="resetGame()">Start New Game</button>
+</div>

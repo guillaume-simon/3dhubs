@@ -7,7 +7,7 @@ import { HangmanService } from '../../hangman.service';
 @Component({
     selector: 'word',
     templateUrl: './word.component.html',
-    styleUrls: ['./word.component.scss', '../../../assets/letter.scss']
+    styleUrls: ['../../../assets/letter.scss']
   })
 export class WordComponent implements OnInit {
 

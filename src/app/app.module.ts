@@ -14,6 +14,8 @@ import { HealthbarComponent } from './components/healthbar/healthbar.component'
 import { KeyboardComponent } from './components/keyboard/keyboard.component'
 import { ScorebarComponent } from './components/scorebar/scorebar.component'
 import { WordComponent } from './components/word/word.component'
+import { WinMessageComponent } from './components/WinMessage/win-message.component'
+import { LoseMessageComponent } from './components/LoseMessage/lose-message.component'
 import { StringToLetterPipe } from './string-to-letter.pipe'
 import { NumberToBoolArrayPipe } from './number-to-bool-array.pipe'
 import { FloatToFixedPipe } from './float-to-fixed.pipe'
@@ -25,6 +27,8 @@ import { FloatToFixedPipe } from './float-to-fixed.pipe'
     KeyboardComponent,
     ScorebarComponent,
     WordComponent,
+    WinMessageComponent,
+    LoseMessageComponent,
     StringToLetterPipe,
     NumberToBoolArrayPipe,
     FloatToFixedPipe

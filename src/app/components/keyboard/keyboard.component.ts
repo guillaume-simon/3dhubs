@@ -7,7 +7,7 @@ import { tryLetter, resetGame } from '../../actions/hangman.actions';
 @Component({
     selector: 'keyboard',
     templateUrl: './keyboard.component.html',
-    styleUrls: ['./keyboard.component.scss', '../../../assets/letter.scss']
+    styleUrls: ['../../../assets/letter.scss']
   })
 export class KeyboardComponent implements OnInit {
 
@@ -20,12 +20,6 @@ export class KeyboardComponent implements OnInit {
     );
     health: Observable<number> = this.store.pipe(
         select(state => state.hangman.player.health),
-    );
-    score: Observable<number> = this.store.pipe(
-        select(state => state.hangman.player.score),
-    );
-    highscore: Observable<number> = this.store.pipe(
-        select(state => state.hangman.highscore),
     );
     isGameOn: Observable<boolean> = this.store.pipe(
         select(state => state.hangman.isGameOn),

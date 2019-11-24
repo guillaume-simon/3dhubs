@@ -17,6 +17,12 @@ export class ScorebarComponent implements OnInit {
     score: Observable<number> = this.store.pipe(
         select(state => state.hangman.player.score),
     );
+    highscore: Observable<number> = this.store.pipe(
+        select(state => state.hangman.highscore),
+    );
+    isGameOn: Observable<boolean> = this.store.pipe(
+        select(state => state.hangman.isGameOn),
+    );
 
     constructor(private store: Store<State>, private hangmanService: HangmanService) {}
 

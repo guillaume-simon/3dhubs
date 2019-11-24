@@ -1,10 +1,8 @@
-@import '../../../assets/colors.scss';
+@import 'colors.scss';
 
 .message {
     border-radius: 10px;
     background-color: $message-color;
-    min-width: 30%;
-    height: 20vh;
     padding-top: 5vh;
     padding-bottom: 5vh;
     vertical-align: center;
@@ -25,4 +23,3 @@
         background-color: $letter-found-color;
     } 
 }
-
