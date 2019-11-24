@@ -37,10 +37,5 @@ export class KeyboardComponent implements OnInit {
     submitLetter(letter: string): void {
         this.store.dispatch(tryLetter({ letter: letter }));
     }
-
-    resetGame() {
-        this.store.dispatch(resetGame());
-    }
     
-
 }
