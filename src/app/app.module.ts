@@ -10,10 +10,10 @@ import { HangmanEffects } from './effects/hangman.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HealthbarComponent } from './components/healthbar.component'
-import { KeyboardComponent } from './components/keyboard.component'
-import { ScorebarComponent } from './components/scorebar.component'
-import { WordComponent } from './components/word.component'
+import { HealthbarComponent } from './components/healthbar/healthbar.component'
+import { KeyboardComponent } from './components/keyboard/keyboard.component'
+import { ScorebarComponent } from './components/scorebar/scorebar.component'
+import { WordComponent } from './components/word/word.component'
 import { StringToLetterPipe } from './string-to-letter.pipe'
 import { NumberToBoolArrayPipe } from './number-to-bool-array.pipe'
 import { FloatToFixedPipe } from './float-to-fixed.pipe'

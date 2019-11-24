@@ -16,7 +16,7 @@ export const submitBadLetter = createAction(
 
 export const submitGoodLetter = createAction(
   '[Hangman] Submit Good Letter',
-  props<{ letter: string }>()
+  props<{ letter: string, nbFoundLetters: number }>()
 );
 
 export const gameWon = createAction(

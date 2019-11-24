@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
-import { State } from '../reducers';
-import { HangmanService } from '../hangman.service';
+import { State } from '../../reducers';
+import { HangmanService } from '../../hangman.service';
 
 @Component({
     selector: 'scorebar',

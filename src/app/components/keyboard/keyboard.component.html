@@ -1,4 +1,4 @@
-<div fxLayout="fxLayoutGap" fxLayoutAlign="center" *ngIf="(isGameOn | async ); else winBlock">
+<div style='padding-left: 10vw; padding-right: 10vw' fxLayout="fxLayoutGap" fxLayoutAlign="center" *ngIf="(isGameOn | async ); else winBlock">
     <div *ngIf=" (health | async) > 0; else looseBlock ">
         <button class="letter"
             *ngFor="let letter of availableLetters" 

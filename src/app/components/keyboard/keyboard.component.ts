@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
-import { State } from '../reducers';
-import { tryLetter, resetGame } from '../actions/hangman.actions';
+import { State } from '../../reducers';
+import { tryLetter, resetGame } from '../../actions/hangman.actions';
 
 @Component({
     selector: 'keyboard',
     templateUrl: './keyboard.component.html',
-    styleUrls: ['./keyboard.component.scss', '../../assets/letter.scss']
+    styleUrls: ['./keyboard.component.scss', '../../../assets/letter.scss']
   })
 export class KeyboardComponent implements OnInit {
 

@@ -78,10 +78,10 @@ const _reducer = createReducer(
       })
   ),
   on(submitGoodLetter,
-    (state, { letter }) => (
+    (state, { letter, nbFoundLetters }) => (
       {
       ...state,
-        nbFoundLetters: state.nbFoundLetters + 1,
+        nbFoundLetters: state.nbFoundLetters + nbFoundLetters,
         player: { ...state.player, score: state.player.score + (state.multiplier * 1000) },
         multiplier: state.multiplier + 3/10,
         submittedLetters: state.submittedLetters.concat(letter)

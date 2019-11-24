@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
-import { State } from '../reducers';
+import { State } from '../../reducers';
 
 @Component({
     selector: 'healthbar',

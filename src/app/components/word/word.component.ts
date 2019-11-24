@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
-import { State } from '../reducers';
-import { HangmanService } from '../hangman.service';
+import { State } from '../../reducers';
+import { HangmanService } from '../../hangman.service';
 
 @Component({
     selector: 'word',
     templateUrl: './word.component.html',
-    styleUrls: ['./word.component.scss', '../../assets/letter.scss']
+    styleUrls: ['./word.component.scss', '../../../assets/letter.scss']
   })
 export class WordComponent implements OnInit {
 
