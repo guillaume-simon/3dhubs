@@ -7,7 +7,7 @@ import { resetGame } from '../../actions/hangman.actions';
 @Component({
     selector: 'win-message',
     templateUrl: './win-message.component.html',
-    styleUrls: ['../../../assets/message.scss', './win-message.component.scss']
+    styleUrls: ['../../../styles/message.scss', './win-message.component.scss']
   })
 export class WinMessageComponent implements OnInit {
 

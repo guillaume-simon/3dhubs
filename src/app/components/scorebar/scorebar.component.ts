@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import { State } from '../../reducers';
-import { HangmanService } from '../../hangman.service';
 
 @Component({
     selector: 'scorebar',
@@ -12,7 +11,7 @@ import { HangmanService } from '../../hangman.service';
 export class ScorebarComponent implements OnInit {
 
     multiplier: Observable<number> = this.store.pipe(
-        select(state => state.hangman.multiplier),
+        select(state => state.hangman.game.multiplier),
     );
     score: Observable<number> = this.store.pipe(
         select(state => state.hangman.player.score),
@@ -24,7 +23,7 @@ export class ScorebarComponent implements OnInit {
         select(state => state.hangman.isGameOn),
     );
 
-    constructor(private store: Store<State>, private hangmanService: HangmanService) {}
+    constructor(private store: Store<State>) {}
 
     ngOnInit() {
     }

@@ -16,9 +16,9 @@ import { ScorebarComponent } from './components/scorebar/scorebar.component'
 import { WordComponent } from './components/word/word.component'
 import { WinMessageComponent } from './components/WinMessage/win-message.component'
 import { LoseMessageComponent } from './components/LoseMessage/lose-message.component'
-import { StringToLetterPipe } from './string-to-letter.pipe'
-import { NumberToBoolArrayPipe } from './number-to-bool-array.pipe'
-import { FloatToFixedPipe } from './float-to-fixed.pipe'
+import { StringToLetterPipe } from './pipes/string-to-letter.pipe'
+import { NumberToBoolArrayPipe } from './pipes/number-to-bool-array.pipe'
+import { FloatToFixedPipe } from './pipes/float-to-fixed.pipe'
 
 @NgModule({
   declarations: [

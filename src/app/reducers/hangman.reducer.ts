@@ -8,18 +8,15 @@ import {
 } from '../actions/hangman.actions';
 
 import { Player } from '../models/player.model';
+import { Game } from '../models/game.model';
 
 export const hangmanFeatureKey = 'hangman';
 
 export interface State {
-  word: string;
-  nbFoundLetters: number;
-  submittedLetters: string[];
   player: Player;
-  score: number;
-  highscore: number;
-  multiplier: number;
+  game: Game;
   isGameOn: boolean;
+  highscore: number;
 }
 
 export const words: string[] = [
@@ -31,65 +28,86 @@ export const words: string[] = [
 ]
 
 export const initialState: State = {
-  word: words[Math.floor(Math.random() * Math.floor(words.length))],
-  nbFoundLetters: 0,
-  submittedLetters: [],
-  player: { health: 5, score: 0 },
-  score: 0,
-  highscore: 0,
-  multiplier: 1,
-  isGameOn: true
+  game: {
+    word: words[Math.floor(Math.random() * Math.floor(words.length))],
+    nbFoundLetters: 0,
+    submittedLetters: [],
+    score: 0,
+    multiplier: 1
+  },
+  player: { 
+    health: 5, 
+    score: 0 
+  },
+  isGameOn: true,
+  highscore: 0
 };
 
 const hangmanReducer = createReducer(
   initialState,
 );
 
-export const getWord = (state: State) => state.word;
-export const getFoundLetters = (state: State) => state.submittedLetters;
-export const getNbFoundLetters = (state: State) => state.nbFoundLetters;
+export const getWord = (state: State) => state.game.word;
+export const getFoundLetters = (state: State) => state.game.submittedLetters;
+export const getNbFoundLetters = (state: State) => state.game.nbFoundLetters;
 
 const _reducer = createReducer(
   initialState,
   on(resetGame, 
     (state) => ({
       ...state,
-      word: words[Math.floor(Math.random() * Math.floor(words.length))],
-      nbFoundLetters: 0,
-      submittedLetters: [],
+      game: {
+        word: words[Math.floor(Math.random() * Math.floor(words.length))],
+        nbFoundLetters: 0,
+        submittedLetters: [],
+        score: 0,
+        multiplier: 1
+      },
       player: { health: 5, score: 0 },
-      multiplier: 1,
       isGameOn: true
     })
     ),
   on(tryLetter, 
     (state, { letter }) => (
       { ...state,
-        submittedLetters: state.submittedLetters
+        game: {
+          ...state.game,
+          submittedLetters: state.game.submittedLetters
+        }
       })
     ),
   on(submitBadLetter,
     (state, { letter }) => (
       {
       ...state,
-        multiplier: 1,
-        submittedLetters: state.submittedLetters.concat(letter),
-        player: { ...state.player, health: state.player.health - 1 }
+        game: {
+          ...state.game,
+          multiplier: 1,
+          submittedLetters: state.game.submittedLetters.concat(letter),
+        },
+        player: { 
+          ...state.player, 
+          health: state.player.health - 1
+        }
       })
   ),
   on(submitGoodLetter,
     (state, { letter, nbFoundLetters }) => (
       {
       ...state,
-        nbFoundLetters: state.nbFoundLetters + nbFoundLetters,
-        player: { ...state.player, score: state.player.score + (state.multiplier * 1000) },
-        multiplier: state.multiplier + 3/10,
-        submittedLetters: state.submittedLetters.concat(letter)
+        game: {
+          ...state.game,
+          nbFoundLetters: state.game.nbFoundLetters + nbFoundLetters,
+          multiplier: state.game.multiplier + 3/10,
+          submittedLetters: state.game.submittedLetters.concat(letter)
+        },
+        player: { ...state.player, score: state.player.score + (state.game.multiplier * 1000) },
+
       })
   ),
   on(gameWon,
     (state) => { 
-      let finalScore = state.player.score + (state.multiplier * 1000);
+      let finalScore = state.player.score + (state.game.multiplier * 1000);
       return ({
         ...state,
         player: { ...state.player, score: finalScore },

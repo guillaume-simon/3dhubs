@@ -6,7 +6,7 @@ import { resetGame } from '../../actions/hangman.actions';
 @Component({
     selector: 'lose-message',
     templateUrl: './lose-message.component.html',
-    styleUrls: ['../../../assets/message.scss']
+    styleUrls: ['../../../styles/message.scss']
   })
 export class LoseMessageComponent implements OnInit {
 

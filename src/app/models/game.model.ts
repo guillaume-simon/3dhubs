@@ -1,10 +1,8 @@
 
-import { Player } from './player.model';
-
 export interface Game {
     word: string;
-    hiddenWord: string[];
-    player: Player;
-    letters: string[];
+    nbFoundLetters: number;
+    submittedLetters: string[];
+    score: number;
     multiplier: number;
 }

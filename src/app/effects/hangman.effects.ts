@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, withLatestFrom, filter } from 'rxjs/operators';
-import { HangmanService } from '../hangman.service';
 import { Store } from '@ngrx/store';
 import { State, getWord, getNbFoundLetters } from '../reducers';
 import { tryLetter, submitGoodLetter } from '../actions/hangman.actions';
@@ -35,7 +34,6 @@ export class HangmanEffects {
 
 constructor(
   private actions$: Actions,
-  private hangmanService: HangmanService,
   private store: Store<State>
 ) {}
 

@@ -7,16 +7,16 @@ import { tryLetter, resetGame } from '../../actions/hangman.actions';
 @Component({
     selector: 'keyboard',
     templateUrl: './keyboard.component.html',
-    styleUrls: ['../../../assets/letter.scss']
+    styleUrls: ['../../../styles/letter.scss']
   })
 export class KeyboardComponent implements OnInit {
 
     availableLetters: string[] = [];
     submittedLetters: Observable<string[]> = this.store.pipe(
-        select(state => state.hangman.submittedLetters),
+        select(state => state.hangman.game.submittedLetters),
     );
     word: Observable<string> = this.store.pipe(
-        select(state => state.hangman.word),
+        select(state => state.hangman.game.word),
     );
     health: Observable<number> = this.store.pipe(
         select(state => state.hangman.player.health),

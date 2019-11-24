@@ -1,5 +1,4 @@
 import {
-  ActionReducer,
   ActionReducerMap,
   createFeatureSelector,
   createSelector,
@@ -9,15 +8,12 @@ import { environment } from '../../environments/environment';
 import * as fromHangman from './hangman.reducer';
 
 export interface State {
-
   [fromHangman.hangmanFeatureKey]: fromHangman.State;
 }
 
 export const reducers: ActionReducerMap<State> = {
-
   [fromHangman.hangmanFeatureKey]: fromHangman.reducer,
 };
-
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
 
